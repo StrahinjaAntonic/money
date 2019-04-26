@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editing Data</h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-text">
+                <form action="/editval" method="post">
+                    <div class="form-group m-1 p-3">
+                        <input class="form-control" type="hidden" id="id" value="">
+                        <label for="nwct">Edit category</label>
+                        <select class="form-control browser-default custom-select" id="nwct">
+                            <% obj.forEach((name) => { %>
+                            <option value="<%= name.categories_id %>">
+                                <%= name.categories_name %>
+                            </option>
+                            <% }) %>
+                        </select>
+                        <label for="nwdt">Edit date</label>
+                        <input class="form-control" type="text" id="nwdt" placeholder="Enter new value">
+                        <label for="nwam">Edit amount</label>
+                        <input class="form-control" type="text" id="nwam" placeholder="Enter new value">
+                        <label for="nwcm">Edit comment</label>
+                        <input class="form-control" type="text" id="nwcm" placeholder="Enter new value">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer m-auto">
+                <button class="btn btn-success" data-dismiss="modal" id="save">Save</button>
+                <button class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center text-light">
+    <h1 class="coloring-text pb-4" id="editing">Edit your transaction</h1>
+</div>
+<div class="table-wrapper-scroll-y divdt p-3">
+    <table id="tableedit" class="table table-striped txttbl p-3" cellspacing="0">
+        <thead class="font-weight-normal">
+            <tr class="text-primary">
+                <th>ID</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% obj.forEach((name) => { %>
+            <tr>
+                <td><%=name.main_transid %></td>
+                <td><%= name.categories_name %></td>
+                <td><%= name.main_date%></td>
+                <td><%= name.transactions_amount %></td>
+                <td><%= name.main_comment %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<script src="../assets/js/edit.js"></script>
+<% include ../partials/footer %>

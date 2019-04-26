@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<div class="modal fade" id="addingNew">
+    <div class="modal-dialog">
+        <div class="modal-content text-left">
+            <div class="modal-header">
+                <h4 class="modal-title">Adding new category</h4>
+            </div>
+            <div class="modal-body h5">You can add whatever you like</div>
+            <div class="modal-text">
+                <form action="/addingNew" method="POST" id="form">
+                    <div class="form-group m-1 p-1">
+                        <label for="name">Category name</label>
+                        <input class="form-control" type="text" id="name" placeholder="Enter new category">
+                    </div>
+                    <div class="form-group m-1 p-1">
+                        <label for="radio" class="d-block">Expense or Income</label>
+                        <input class="" type="radio" id="exp" name="radio" value="0">Expense
+                        <input class="" type="radio" id="inc" name="radio" value="1">Income
+                    </div>
+                    <div class="form-group m-1 p-1">
+                        <label for="name">Pick color for chart</label>
+                        <input class="form-control" type="color" name="favcolor" id="color" value="">
+                    </div>
+                    <div id="icons" class="form-group m-1 p-1">
+                        <div class="modal-body">Select icon for category</div>
+                        <% print.forEach((name) => { %>
+                        <a class="nav-link text-light d-inline aLink"><img src="<%= name.icons %>" class="d-inline p-1 text-left iconImgId" data-id="<%= name.icons_id %>"></a>
+                        <% }) %>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer m-auto">
+                <a class="btn btn-success text-light" data-dismiss="modal" id="save">Save</a>
+                <a class="btn btn-secondary text-light" data-dismiss="modal" id="close">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/js/new.js"></script>
+<% include ../partials/footer %>
